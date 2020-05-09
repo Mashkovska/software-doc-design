@@ -7,7 +7,7 @@ import routes from "./routes/index.js";
 
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 1103;
 
 app.use(bodyParser.json());
 app.use(morgan("tiny"));
