@@ -2,8 +2,8 @@ import UserModel from "../models/airbnb_user.js";
 import { generateRandId } from "../utils.js";
 
 export default class UserService {
-  static fromCSVtoEntity(csvAgent) {
-    const values = csvAgent.split(",");
+  static fromCSVtoEntity(csvUser) {
+    const values = csvUser.split(",");
 
     return {
       first_name: values[0],
@@ -13,6 +13,18 @@ export default class UserService {
       phone_number: values[4],
     };
   }
+
+  static loadFileAndUploadToDB(firstIndex, lastIndex) {
+    FileService.getUsers(firstIndex, lastIndex).then((users) => {
+      const userService = typedi.Container.get(UserService);
+
+      users.forEach((a) => {
+        const user = UserService.fromCSVtoEntity(a);
+        userService.create(user);
+      });
+    });
+  }
+
   async getAll() {
     const foundUsers = await UserModel.findAll({
       order: [["id", "DESC"]],

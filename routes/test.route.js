@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const fileContent = await FileService.getUsers(0, 8);
+    const fileContent = await FileService.getUsers(0, 100);
 
     const userService = new UserService();
 

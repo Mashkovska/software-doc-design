@@ -13,7 +13,7 @@ export const readLinesFromFile = (startLine, endLine) =>
         startLine = 0;
       }
 
-      const agents = [];
+      const users = [];
 
       const lineReader = readline.createInterface({
         input: fs.createReadStream("./files/file_data.csv"),
@@ -24,13 +24,13 @@ export const readLinesFromFile = (startLine, endLine) =>
         i++;
 
         if (i >= startLine) {
-          agents.push(line);
+          users.push(line);
         }
 
         if (i >= endLine) {
           lineReader.removeAllListeners();
           lineReader.close();
-          resolve(agents);
+          resolve(users);
         }
       });
     } catch (error) {

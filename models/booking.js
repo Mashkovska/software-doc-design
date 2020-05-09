@@ -3,7 +3,7 @@ import { sequelize } from "../config/db.js";
 
 const { DataTypes } = Sequelize;
 
-const Booking = sequelize.define("company", {
+const Booking = sequelize.define("booking", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
